@@ -16,9 +16,7 @@ pipeline {
         }
         stage('Run Spring Boot Container') {
             steps {
-                docker.image('my-springboot-app').withRun(ports: '8080:8080', name: 'springboot') {
-                    sh 'echo "Spring Boot 애플리케이션 실행 중..."'
-                }
+                docker.image('my-springboot-app').withRun(ports: '8080:8080', name: 'springboot')
             }
         }
     }
