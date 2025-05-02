@@ -8,10 +8,10 @@ pipeline {
             }
         }
         stage('Build and Package') {
-            steps {
-                // Spring Boot (Gradle 사용)
-                sh './gradlew clean build -x test'
-                sh 'cd build/libs && docker build -t my-springboot-app .'
+		    steps {
+		        // Spring Boot (Gradle 사용)
+		        sh './gradlew clean build -x test'
+		        sh 'cd build/libs && docker build -t my-springboot-app .'
             }
         }
         stage('Run Spring Boot Container') {
