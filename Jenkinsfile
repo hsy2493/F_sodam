@@ -15,16 +15,12 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build(image: 'my-springboot-app', dockerfile: '../Dockerfile')
-                }
+                docker.build(image: 'my-springboot-app', dockerfile: 'Dockerfile')
             }
         }
         stage('Run Spring Boot Container') {
             steps {
-                script {
-                    docker.run(image: 'my-springboot-app', ports: '8080:8080', name: 'springboot')
-                }
+                docker.run(image: 'my-springboot-app', ports: '8080:8080', name: 'springboot')
             }
         }
     }
