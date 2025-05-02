@@ -11,16 +11,12 @@ pipeline {
                 sh 'chmod +x gradlew'
                 sh './gradlew clean build -x test'
                 sh 'cd build/libs'
-                script {
-                    docker.build(image: 'my-springboot-app', dockerfile: '.')
-                }
+                docker.build(image: 'my-springboot-app', dockerfile: '.')
             }
         }
         stage('Run Spring Boot Container') {
             steps {
-                script {
-                    docker.image('my-springboot-app').withRun(ports: '8080:8080', name: 'springboot')
-                }
+                docker.run(image: 'my-springboot-app', ports: '8080:8080', name: 'springboot')
             }
         }
     }
