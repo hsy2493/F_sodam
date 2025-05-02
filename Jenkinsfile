@@ -12,12 +12,12 @@ pipeline {
                 sh 'chmod +x gradlew'
                 sh './gradlew clean build -x test'
                 sh 'cd build/libs'
-                user id: 'root', script: 'docker build -t my-springboot-app .'
+                sh 'sudo docker build -t my-springboot-app .'
             }
         }
         stage('Run Spring Boot Container') {
             steps {
-                user id: 'root', script: 'docker run -d -p 8080:8080 --name springboot my-springboot-app'
+                sh 'sudo docker run -d -p 8080:8080 --name springboot my-springboot-app'
             }
         }
     }
