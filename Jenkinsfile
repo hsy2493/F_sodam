@@ -10,6 +10,7 @@ pipeline {
         stage('Build and Package') {
             steps {
                 // Spring Boot (Gradle 사용)
+                sh 'chmod 755 gradlew' // 좀 더 명시적인 권한 부여
                 sh './gradlew clean build -x test'
                 sh 'cd build/libs && docker build -t my-springboot-app .'
             }
