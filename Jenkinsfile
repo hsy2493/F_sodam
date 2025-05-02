@@ -15,12 +15,12 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh '/usr/local/bin/docker build -t my-springboot-app .'
+                sh 'docker build -t my-springboot-app .'
             }
         }
         stage('Run Spring Boot Container') {
             steps {
-                sh '/usr/local/bin/docker run -d -p 8080:8080 --name springboot my-springboot-app'
+                sh 'docker run -d -p 8080:8080 --name springboot my-springboot-app'
             }
         }
     }
