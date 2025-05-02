@@ -8,17 +8,10 @@ pipeline {
         }
         stage('Install Docker Client') {
             steps {
-                sh 'apt-get update'
-                sh 'apt-get install -y docker-ce-cli'
+                sh 'sudo apt-get update'
+                sh 'sudo apt-get install -y docker-ce-cli'
             }
-        }
-        stage('Build and Package') {
-            steps {
-                sh 'chmod +x gradlew'
-                sh './gradlew clean build -x test'
-                sh 'cd build/libs'
-            }
-        }
+         }   
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t my-springboot-app .'
