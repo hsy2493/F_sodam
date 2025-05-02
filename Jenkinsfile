@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git credentialsId: 'github-username-token', url: 'https://github.com/hsy2493/F_sodam.git'
+                git credentialsId: 'github-id', url: 'https://github.com/hsy2493/F_sodam.git'
             }
         }
         stage('Build and Package') {
