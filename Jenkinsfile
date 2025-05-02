@@ -6,6 +6,12 @@ pipeline {
                 git credentialsId: 'github-id', url: 'https://github.com/hsy2493/F_sodam.git', branch: 'main'
             }
         }
+        stage('Install Docker Client') {
+            steps {
+                sh 'apt-get update'
+                sh 'apt-get install -y docker-ce-cli'
+            }
+        }
         stage('Build and Package') {
             steps {
                 sh 'chmod +x gradlew'
