@@ -6,12 +6,13 @@ pipeline {
                 git credentialsId: 'github-id', url: 'https://github.com/hsy2493/F_sodam.git', branch: 'main'
             }
         }
-        stage('Install Docker Client') {
+        stage('Build and Package') {
             steps {
-                sh 'sudo apt-get update'
-                sh 'sudo apt-get install -y docker-ce-cli'
+                sh 'chmod +x gradlew'
+                sh './gradlew clean build -x test'
+                sh 'cd build/libs'
             }
-         }   
+        }
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t my-springboot-app .'
